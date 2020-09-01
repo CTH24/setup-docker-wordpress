@@ -3,12 +3,12 @@ version: "3"
 services:
   wp:
     image: wordpress:latest
+    container_name: ${PROJECT_NAME}
     ports:
       - ${IP}:80:80
     volumes:
       - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
-      - ./app/plugins:/var/www/html/wp-content/plugins
-      - ./app/themes:/var/www/html/wp-content/themes
+      - ./src:/var/www/html
 
     environment:
       WORDPRESS_DB_HOST: db
@@ -22,15 +22,17 @@ services:
 
   wpcli:
     image: wordpress:cli
+    container_name: ${PROJECT_NAME}-cli
     volumes:
       - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
-      - ./app:/var/www/html
+      - ./src:/var/www/html
     depends_on:
       - db
       - wp
 
   pma:
     image: phpmyadmin/phpmyadmin
+    container_name: ${PROJECT_NAME}-pma
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
@@ -42,6 +44,7 @@ services:
 
   db:
     image: mysql:latest
+    container_name: ${PROJECT_NAME}-db
     ports:
       - ${IP}:3306:3306
     command:
@@ -51,11 +54,8 @@ services:
         "--collation-server=utf8mb4_unicode_ci",
       ]
     volumes:
-      - ./database:/docker-entrypoint-initdb.d
-      - db_data:/var/lib/mysql
+      - ./db_backup:/docker-entrypoint-initdb.d
+      - ./db:/var/lib/mysql
     environment:
       MYSQL_DATABASE: "${DB_NAME}"
       MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
-
-volumes:
-  db_data:
