@@ -1,0 +1,16 @@
+# Translation of Plugins - Display Environment Type - Stable (latest release) in German
+# This file is distributed under the same license as the Plugins - Display Environment Type - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-08-21 09:22:01+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: de\n"
+"Project-Id-Version: Plugins - Display Environment Type - Stable (latest release)\n"
+
+#: app/Plugin.php:62 app/Plugin.php:84
+msgid "Environment Type"
+msgstr "Umgebungstyp"

@@ -22,6 +22,8 @@
 /** The name of the database for WordPress */
 define( 'DB_NAME', 'wordpress');
 
+define( 'WP_ENVIRONMENT_TYPE', 'development' );
+
 /** MySQL database username */
 define( 'DB_USER', 'root');
 
